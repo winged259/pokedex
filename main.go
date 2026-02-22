@@ -7,6 +7,10 @@ import (
 )
 
 func main() {
+	cfg := &Config{
+		Next: "https://pokeapi.co/api/v2/location-area/",
+		Previous: "",
+	}
 	scanner := bufio.NewScanner(os.Stdin)
 	for {
 		fmt.Print("> ")
@@ -22,7 +26,7 @@ func main() {
 			fmt.Printf("Unknown command: %s\n", commandName)
 			continue
 		}
-		err := command.callback()
+		err := command.callback(cfg)
 		if err != nil {
 			fmt.Println(err)
 		}
